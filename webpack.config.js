@@ -19,7 +19,7 @@ module.exports = {
     devServer: {
         open: true,//自动打开浏览器
         hot: true,//启动热更新第一步
-        port: 3000,//端口
+        port: 8000,//端口
         contentBase: 'src'//默认显示页面
     },
     plugins: [
