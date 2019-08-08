@@ -1,38 +1,48 @@
 <template>
   <div>
     <!-- 头部 -->
-    <van-nav-bar title="领军者商城" fixed/>
-    <h1 class="demoasd">阿萨德</h1>
+    <div class="top-placeholder"></div>
+    <van-nav-bar title="领军者商城" fixed />
     <!-- 中间内容展示 -->
+    <router-view></router-view>
 
     <!-- 底部 -->
-<van-tabbar
-  v-model="active"
-  active-color="#84C225"
-  inactive-color="#000"
->
-  <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-  <van-tabbar-item icon="search">标签</van-tabbar-item>
-  <van-tabbar-item icon="freinds-o">标签</van-tabbar-item>
-  <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
-</van-tabbar>
-
-
-
+    <van-tabbar v-model="active" active-color="#84C225" inactive-color="#000" route>
+      <van-tabbar-item icon="home-o" to="/home">首页</van-tabbar-item>
+      <van-tabbar-item icon="shopping-cart-o" to="/shopcar" info="1">购物车</van-tabbar-item>
+      <van-tabbar-item icon="user-circle-o" to="/login">登录</van-tabbar-item>
+      <van-tabbar-item icon="phone-circle-o" to="/phone">联系我们</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 <script>
+export default {};
 </script>
 
-<style scoped>
-.demoasd{
-  padding-top: 30px;
-  text-align: center;
+<style>
+* {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
-.van-nav-bar{
-  background-color: #84C225;
+.van-swipe-item {
+  height: 255px !important;
 }
-.van-nav-bar__title{
+.van-swipe-item img {
+  height: 100%;
+  width: 100%;
+}
+.top-placeholder {
+  width: 100%;
+  height: 46px;
+  visibility: hidden;
+}
+.van-nav-bar {
+  background-color: #84c225;
+  z-index: -1 !important;
+}
+.van-nav-bar__title {
   color: white;
 }
 </style>
