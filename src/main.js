@@ -6,15 +6,9 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 // 按需导入vant
-import { Button,NavBar } from 'vant';
-Vue.use(Button);
-Vue.use(NavBar);
+import { Button, NavBar, Tabbar, TabbarItem } from 'vant';
+Vue.use(Button).use(NavBar).use(Tabbar).use(TabbarItem);
 
-
-// 按需导入mintui
-// import { Button } from 'mint-ui'
-// // 使用Vue.component(名称,)注册按钮主件
-// Vue.component(Button.name, Button)
 
 import app from './app.vue'
 
