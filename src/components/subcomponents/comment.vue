@@ -2,9 +2,7 @@
   <div>
     <van-tabs>
       <van-tab>
-        <div slot="title">
-          评论专区
-        </div>
+        <div slot="title">评论专区</div>
         <textarea v-model="msg" placeholder="请输入评论" rows="5" maxlength="50"></textarea>
         <van-button type="primary" size="large" @click="postComment">发送评论</van-button>
       </van-tab>
@@ -20,8 +18,8 @@
       >
         <div>{{item.content === '' || item.content === 'undefined' ? '此用户很懒,什么都没说。': item.content}}</div>
         <div slot="footer">
-          <van-button size="small" icon="arrow-up">赞</van-button>
-          <van-button size="small" type="danger" icon="arrow-down">踩</van-button>
+          <van-button size="small"  icon="arrow-up" @click="up" >赞</van-button>
+          <van-button size="small" type="danger" icon="arrow-down" @click="down">踩</van-button>
         </div>
       </van-panel>
       <!-- <van-button  type="danger" text="加载更多" size="large" @click="getMore" /> -->
@@ -46,6 +44,24 @@ export default {
     this.getComments();
   },
   methods: {
+    up() {
+      Toast({
+        message: "赞了一下",
+        icon: "arrow-up",
+        duration: 1000,
+        
+        onClose() {
+          this
+        }
+      });
+    },
+    down() {
+      Toast({
+        message: "踩了一下",
+        icon: "arrow-down",
+        duration: 1000
+      });
+    },
     onLoad() {
       // 异步更新数据
       setTimeout(() => {
@@ -85,7 +101,6 @@ export default {
         return Toast("说点什么吧");
       }
 
-
       this.$http
         .post("api/postcomment/" + this.$route.params.id, {
           content: this.msg.trim()
@@ -98,23 +113,18 @@ export default {
               content: this.msg.trim()
             };
             this.comments.unshift(cmt);
-            this.msg = '';
+            this.msg = "";
             Toast("发表成功!");
-          } else{
+          } else {
             Toast("发表失败,请联系管理员!");
-
           }
         });
     }
-
   },
   props: ["id"]
 };
 </script>
-<style>
-.van-tabs__line {
-  width: 100% !important;
-}
+<style scoped>
 .van-button--primary {
   background-color: #84c225;
   border: #84c225;
@@ -125,4 +135,8 @@ export default {
 .van-cell:not(:last-child)::after {
   left: 0px;
 }
+textarea{
+  border: none;
+}
+
 </style>

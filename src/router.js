@@ -6,6 +6,7 @@ import LoginContainer from './components/tabbar/LoginContainer.vue';
 import PhoneContainer from './components/tabbar/PhoneContainer.vue';
 import News from './components/news/news.vue'
 import NewsInfo from './components/news/newsinfo.vue'
+import PhotoList from './components/photos/PhotoList.vue'
 
 var router = new VueRouter({
     routes: [
@@ -36,6 +37,10 @@ var router = new VueRouter({
          { 
             path: '/home/newsinfo/:id',
             component: NewsInfo
+         },
+         { 
+            path: '/home/photolist',
+            component: PhotoList
          },
     ],
 
