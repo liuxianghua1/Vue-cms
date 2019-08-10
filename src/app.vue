@@ -10,7 +10,7 @@
     <!-- 192.168.1.160 -->
     <!-- 底部 -->
     <div class="bottom-placeholder"></div>
-    <van-tabbar v-model="active" active-color="#84C225" inactive-color="#000" route>
+    <van-tabbar active-color="#84C225" inactive-color="#000" route>
       <van-tabbar-item icon="home-o" to="/home" >首页</van-tabbar-item>
 
       <van-tabbar-item icon="shopping-cart-o" to="/shopcar" info="1">购物车</van-tabbar-item>
