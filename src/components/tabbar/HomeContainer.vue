@@ -6,8 +6,8 @@
       </van-swipe-item>
     </van-swipe>
 
-    <van-grid :column-num="3">
-      <van-grid-item v-for="value in 1" :key="value" icon="newspaper-o" text="公司动态" />
+    <van-grid clickable :column-num="3">
+      <van-grid-item to="/home/news" v-for="value in 1" :key="value" icon="newspaper-o" text="公司动态"  />
       <van-grid-item v-for="value in 1" :key="value" icon="exchange" text="联盟合作" />
       <van-grid-item v-for="value in 1" :key="value" icon="friends-o" text="企业文化" />
       <van-grid-item v-for="value in 1" :key="value" icon="shopping-cart-o" text="产品购买" />

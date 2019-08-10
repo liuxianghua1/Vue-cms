@@ -11,18 +11,24 @@
     <!-- 底部 -->
     <div class="bottom-placeholder"></div>
     <van-tabbar v-model="active" active-color="#84C225" inactive-color="#000" route>
-      <van-tabbar-item icon="home-o" to="/home">首页</van-tabbar-item>
+      <van-tabbar-item icon="home-o" to="/home" >首页</van-tabbar-item>
 
       <van-tabbar-item icon="shopping-cart-o" to="/shopcar" info="1">购物车</van-tabbar-item>
 
-      <van-tabbar-item icon="user-circle-o" to="/login">登录</van-tabbar-item>
+      <van-tabbar-item  icon="user-circle-o" to="/login">登录</van-tabbar-item>
 
       <van-tabbar-item icon="phone-circle-o" to="/phone">联系我们</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+   
+    }
+  }
+};
 </script>
 
 <style>
@@ -30,16 +36,19 @@ export default {};
 html{
   overflow-x: hidden;
 }
-.v-enter,
+.v-enter{
+  opacity: 0;
+  transform: translateX(100%);
+}
 .v-leave-to {
   opacity: 0;
-  transform: translateX(100px);
+  transform: translateX(-100%);
 }
 /* .v-enter-active 入场动画的时间段  */
 /* .v-leave-active 离开场动画的时间段 */
 .v-enter-active,
 .v-leave-active {
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 * {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
@@ -66,7 +75,7 @@ html{
 }
 .van-nav-bar {
   background-color: #84c225;
-  z-index: -1 !important;
+  /* z-index: -1 !important; */
 }
 .van-nav-bar__title {
   color: white;
