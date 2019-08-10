@@ -14,7 +14,7 @@
           
  <van-panel title="评论" :desc="item.user_name" :status="item.add_time"  v-for="item in comments" :key="item.add_time" >
      
-            <div>{{item.content === (''||'undefined') ? '此用户很懒,什么都没说。': item.content}}</div>
+            <div>{{item.content === '' || item.content === 'undefined' ? '此用户很懒,什么都没说。': item.content}}</div>
             <div slot="footer">
               <van-button size="small" icon="arrow-up">赞</van-button>
               <van-button size="small" type="danger" icon="arrow-down">踩</van-button>
