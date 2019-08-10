@@ -32,6 +32,7 @@ module.exports = {
     module: {
         rules: [
             { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+            { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
             { test: /\.(jpg|png|gif|jpeg)$/, use: 'url-loader?limit=7631&name=[hash:8]-[name].[ext]'},
             // limit=7631给定的值是字节大小 大于这个值 就不base64 如果小于就转成base64
             { test: /\.(ttf|eot|svg|woff|woff2)$/, use:'url-loader'},

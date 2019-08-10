@@ -1,24 +1,25 @@
 <template>
   <div>
-    <van-row>
-      <van-col span="8" v-for="item in cates"
-          :key="item.id" >
-        <div
-          
+    <mu-container>
+      
+      <mu-tabs class="mu-tabs mu-tabs-full-width" >
+        <mu-tab
+          v-for="item in cates"
+          :key="item.id"
           @click="getPhotoList(item.id)"
-        >
-          <span class="van-ellipsis">{{item.title}}</span>
-        </div>
-      </van-col>
-    </van-row>
+          full-width
+        >{{item.title}}</mu-tab>
+      </mu-tabs>
 
-    <div class="mui-card" v-for="item in imageList" :key="item.id">
-      <div class="mui-card-header">{{item.title}}</div>
-      <div class="mui-card-content">
-        <img alt width="100%" v-lazy="item.img_url" />
+      <div class="mui-card" v-for="item in imageList" :key="item.id">
+        <div class="mui-card-header">{{item.title}}</div>
+        <div class="mui-card-content">
+          <img alt width="100%" v-lazy="item.img_url" />
+        </div>
+        <div class="mui-card-footer">{{item.zhaiyao}}</div>
       </div>
-      <div class="mui-card-footer">{{item.zhaiyao}}</div>
-    </div>
+
+    </mu-container>
   </div>
 </template>
 <script>
@@ -71,7 +72,6 @@ export default {
           });
         }
       });
-      // console.log(this.id)
     }
   }
 };
@@ -79,5 +79,19 @@ export default {
 <style>
 img {
   vertical-align: middle;
+}
+.mu-tabs {
+  color: #7d7e80;
+  background-color: white;
+}
+.mu-tab-active {
+  color: #f44;
+}
+.mu-tab-link-highlight {
+  height: 0px;
+}
+.container {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 </style>
