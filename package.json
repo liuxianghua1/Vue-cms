@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --hot --host 192.168.1.160 --disable-host-check"
+    "dev": "webpack-dev-server --hot --host 192.168.5.90 --disable-host-check"
   },
   "keywords": [],
   "author": "",
