@@ -4,10 +4,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // 2.手动安装 vuerouter
 Vue.use(VueRouter)
+
+// 过滤器全局
+import moment from 'moment';
+Vue.filter('dateFormat', function(dataStr, pattern="YYYY-MM-DD HH:mm:ss") {
+   return moment(dataStr).format(pattern)
+})
+
 import './lib/mui/css/mui.css'
-import MuseUI from 'muse-ui';
-import '../node_modules/muse-ui/dist/muse-ui'
-Vue.use(MuseUI);
 
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
@@ -20,6 +24,7 @@ Vue.use(Button).use(NavBar).use(Tabbar).use(TabbarItem).use(Row).use(Col).use(Sw
 import router from './router.js'
 
 import app from './app.vue'
+import VueLazyload from '_vue-lazyload@1.3.1@vue-lazyload';
 
 var vm = new Vue({
     el: "#app",

@@ -6,7 +6,7 @@
 </van-row>
 
 <van-row >
-  <van-col span="24"><p>2018-08-08</p></van-col>
+  <van-col span="24"><p>{{newsinfo.add_time | dateFormat}}</p></van-col>
 </van-row>
 
 <van-row>

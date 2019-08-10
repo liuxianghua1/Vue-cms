@@ -75,7 +75,7 @@ html{
 }
 .van-nav-bar {
   background-color: #84c225;
-  /* z-index: -1 !important; */
+  z-index: 999 !important;
 }
 .van-nav-bar__title {
   color: white;

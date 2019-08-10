@@ -15,7 +15,7 @@
       <van-panel
           title="评论"
           :desc="item.user_name"
-          :status="item.add_time"
+          :status="item.add_time | dateFormat"
           v-for="item in comments"
           :key="item.add_time"
         >

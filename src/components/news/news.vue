@@ -8,7 +8,7 @@
             <div class="mui-media-body">
                 {{item.title}}
                 <p class='mui-ellipsis'>{{item.zhaiyao}}</p>
-                <p>发表时间:2018-08-08</p>
+                <p>{{item.add_time | dateFormat}}</p>
             </div>
         </router-link>
     </li>
