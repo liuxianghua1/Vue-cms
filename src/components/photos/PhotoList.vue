@@ -1,8 +1,7 @@
 <template>
   <div>
     <mu-container>
-      
-      <mu-tabs class="mu-tabs mu-tabs-full-width" >
+      <mu-tabs class="mu-tabs mu-tabs-full-width">
         <mu-tab
           v-for="item in cates"
           :key="item.id"
@@ -10,16 +9,15 @@
           full-width
         >{{item.title}}</mu-tab>
       </mu-tabs>
-
-      <div class="mui-card" v-for="item in imageList" :key="item.id">
-        <div class="mui-card-header">{{item.title}}</div>
-        <div class="mui-card-content">
-          <img alt width="100%" v-lazy="item.img_url" />
-        </div>
-        <div class="mui-card-footer">{{item.zhaiyao}}</div>
-      </div>
-
     </mu-container>
+
+    <div class="mui-card" v-for="item in imageList" :key="item.id">
+      <div class="mui-card-header">{{item.title}}</div>
+      <div class="mui-card-content">
+        <img alt width="100%" v-lazy="item.img_url" />
+      </div>
+      <div class="mui-card-footer">{{item.zhaiyao}}</div>
+    </div>
   </div>
 </template>
 <script>
@@ -46,8 +44,8 @@ export default {
           // this.cates = result.body.message;
           this.cates.unshift(
             { title: "全部", id: 0 },
-            { title: "空间设计", id: 17 },
-            { title: "户型装饰", id: 18 }
+            { title: "户型装饰", id: 18 },
+            { title: "空间设计", id: 17 }
           );
         } else {
           Notify({
@@ -93,5 +91,27 @@ img {
 .container {
   padding-left: 0px;
   padding-right: 0px;
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 100%;
+  }
 }
 </style>
