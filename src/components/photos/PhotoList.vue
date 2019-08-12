@@ -11,13 +11,16 @@
       </mu-tabs>
     </mu-container>
 
-    <div class="mui-card" v-for="item in imageList" :key="item.id">
-      <div class="mui-card-header">{{item.title}}</div>
-      <div class="mui-card-content">
-        <img alt width="100%" v-lazy="item.img_url" />
+      <div class="mui-card" v-for="item in imageList" :key="item.id">
+    <router-link tag="span" :to="'/home/photoinfo/' + item.id">
+
+        <div class="mui-card-header">{{item.title}}</div>
+        <div class="mui-card-content">
+          <img alt width="100%" v-lazy="item.img_url" />
+        </div>
+        <div class="mui-card-footer">{{item.zhaiyao}}</div>
+    </router-link>
       </div>
-      <div class="mui-card-footer">{{item.zhaiyao}}</div>
-    </div>
   </div>
 </template>
 <script>

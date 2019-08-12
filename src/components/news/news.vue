@@ -1,22 +1,18 @@
 <template>
   <div>
-      <van-list
-  v-model="error"
-  :error.sync="error"
-  error-text="没有更多了"
->
-    <mu-container>
-      <mu-card style="margin-top:20px;" v-for="item in newslist" :key="item.id">
-        <mu-card-media title sub-title>
-          <img :src="item.img_url" />
-        </mu-card-media>
-        <mu-card-title :title="item.title"></mu-card-title>
-        <mu-card-text>{{item.zhaiyao}}</mu-card-text>
-        <mu-card-actions>
-          <mu-button flat :to="'/home/newsinfo/' + item.id">查看</mu-button>
-        </mu-card-actions>
-      </mu-card>
-    </mu-container>
+    <van-list v-model="error" :error.sync="error" error-text="没有更多了">
+      <mu-container>
+        <mu-card style="margin-top:20px;" v-for="item in newslist" :key="item.id">
+          <mu-card-media title sub-title>
+            <img :src="item.img_url" />
+          </mu-card-media>
+          <mu-card-title :title="item.title"></mu-card-title>
+          <mu-card-text>{{item.zhaiyao}}</mu-card-text>
+          <mu-card-actions>
+            <mu-button flat :to="'/home/newsinfo/' + item.id">查看</mu-button>
+          </mu-card-actions>
+        </mu-card>
+      </mu-container>
     </van-list>
   </div>
 </template>
@@ -27,7 +23,7 @@ export default {
   data() {
     return {
       newslist: [],
-      error: false,
+      error: false
     };
   },
   created() {
@@ -46,7 +42,7 @@ export default {
           });
         }
       });
-    },
+    }
   }
 };
 </script>
@@ -76,7 +72,7 @@ export default {
     max-width: 100%;
   }
 }
-.van-list__loading{
-    display: none;
+.van-list__loading {
+  display: none;
 }
 </style>

@@ -11,7 +11,7 @@
     <!-- 底部 -->
     <div class="bottom-placeholder"></div>
     
-    <van-tabbar v-model="active" active-color="#84C225" >
+    <van-tabbar v-model="active" active-color="#84C225">
   <van-tabbar-item icon="home-o" to="/home">首页</van-tabbar-item>
   <van-tabbar-item icon="shopping-cart-o" to="/shopcar">购物车</van-tabbar-item>
   <van-tabbar-item icon="user-circle-o" to="/login">登录</van-tabbar-item>
