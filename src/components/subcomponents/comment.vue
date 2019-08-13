@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 发送评论 -->
     <van-tabs>
       <van-tab>
         <div slot="title">评论专区</div>
@@ -8,7 +9,8 @@
       </van-tab>
     </van-tabs>
 
-    <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+    <!-- 评论区域 -->
+    <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false" check >
       <van-panel
         title="评论"
         :desc="item.user_name"
@@ -18,12 +20,12 @@
       >
         <div>{{item.content === '' || item.content === 'undefined' ? '此用户很懒,什么都没说。': item.content}}</div>
         <div slot="footer">
-          <van-button size="small"  icon="arrow-up" @click="up" >赞</van-button>
+          <van-button size="small" icon="arrow-up" @click="up">赞</van-button>
           <van-button size="small" type="danger" icon="arrow-down" @click="down">踩</van-button>
         </div>
       </van-panel>
-      <!-- <van-button  type="danger" text="加载更多" size="large" @click="getMore" /> -->
     </van-list>
+
   </div>
 </template>
 <script>
@@ -49,9 +51,9 @@ export default {
         message: "赞了一下",
         icon: "arrow-up",
         duration: 1000,
-        
+
         onClose() {
-          this
+          this;
         }
       });
     },
@@ -135,8 +137,7 @@ export default {
 .van-cell:not(:last-child)::after {
   left: 0px;
 }
-textarea{
+textarea {
   border: none;
 }
-
 </style>

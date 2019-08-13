@@ -66,8 +66,8 @@ export default {
         if (result.body.status === 0) {
           result.body.message.forEach(item => {
             item.msrc = item.src;
-            item.w = 600;
-            item.h = 400;
+            item.w = 1000;
+            item.h = 800;
           });
           this.list = result.body.message;
         } else {

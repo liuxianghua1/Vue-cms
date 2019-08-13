@@ -2,7 +2,7 @@
   <div>
     <!-- 头部 -->
     <div class="top-placeholder"></div>
-    <van-nav-bar title="领军者商城" fixed />
+    <van-nav-bar title="1" fixed />
     <!-- 中间内容展示 -->
     <transition mode="out-in">
       <router-view></router-view>
