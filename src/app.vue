@@ -30,7 +30,9 @@ export default {
 </script>
 
 <style>
-
+.van-goods-action{
+  bottom: 50px;
+}
 html{
   overflow-x: hidden;
 }

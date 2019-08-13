@@ -9,22 +9,22 @@
       :immediate-check="false"
       check
     >
-      <van-card
-        v-for="item in goodslist"
-        :key="item"
-        :price="item.sell_price"
-        :origin-price="item.market_price"
-        :desc="item.zhaiyao"
-        :title="item.title"
-        tag="hot"
-        :thumb="item.img_url"
-        lazy-load
-        centered
-      >
-        <div slot="footer">
-          <h6>月销 {{ item.stock_quantity }} 笔 领军者旗舰店</h6>
-        </div>
-      </van-card>
+      <router-link :to="'/home/GoodsInfo/' + item.id" v-for="item in goodslist" :key="item">
+        <van-card
+          :price="item.sell_price"
+          :origin-price="item.market_price"
+          :desc="item.zhaiyao"
+          :title="item.title"
+          tag="hot"
+          :thumb="item.img_url"
+          lazy-load
+          centered
+        >
+          <div slot="footer">
+            <h6>月销 {{ item.stock_quantity }} 笔 领军者旗舰店</h6>
+          </div>
+        </van-card>
+      </router-link>
     </van-list>
   </div>
 </template>
