@@ -16,7 +16,7 @@
       </van-cell>
       <van-cell class="goods-express">
         <van-col span="10">运费：免运费</van-col>
-        <van-col span="14">剩余：{{ goods.stock_quantity }}</van-col>
+        <van-col span="14">剩余：{{ goods.stock_quantity }}件</van-col>
       </van-cell>
     </van-cell-group>
     <van-goods-action>
@@ -34,18 +34,15 @@
       </van-cell>
     </van-cell-group>
 
-    <!-- <van-cell-group class="goods-cell-group">
-      <van-cell title="查看商品详情" is-link @click="goDesc(id)" />
-      <van-cell title="查看商品评价" is-link @click="goComment(id)" />
-    </van-cell-group>-->
-
     <van-collapse v-model="activeNames">
       <van-collapse-item title="查看商品详情" name="1">
         <h4>{{ info.title }}</h4>
         <br />
         <div v-html="info.content" class="content"></div>
       </van-collapse-item>
-      <van-collapse-item title="查看商品评价" name="2"><cmtbox :id="$route.params.id"></cmtbox></van-collapse-item>
+      <van-collapse-item title="查看商品评价" name="2">
+        <cmtbox :id="$route.params.id"></cmtbox>
+      </van-collapse-item>
     </van-collapse>
   </div>
 </template>
@@ -65,11 +62,11 @@ import {
   GoodsActionButton
 } from "vant";
 
-import cmtbox from '../subcomponents/comment.vue'
+import cmtbox from "../subcomponents/comment.vue";
 
 export default {
   components: {
-      cmtbox,
+    cmtbox,
     [Tag.name]: Tag,
     [Col.name]: Col,
     [Icon.name]: Icon,
@@ -97,14 +94,6 @@ export default {
     this.getGoodsDesc();
   },
   methods: {
-    // formatPrice() {
-    //   return "¥" + this.goods.sell_price.toFixed(2);
-    // },
-
-    // formatOldPrice() {
-    //   return "¥" + this.goods.market_price.toFixed(2);
-    // },
-
     onClickCart() {
       this.$router.push("cart");
     },
@@ -113,14 +102,6 @@ export default {
       Toast("暂无后续逻辑~");
     },
     getSwipe() {
-      // this.$axios({
-      //     url: "api/getthumimages/" + this.id,
-      //     method: "GET"
-      // }).then(result  > {
-      //     if (result.body.status === 0) {
-      //   this.goods.thumb = result.body.message;
-      // }
-      // })
       this.$http.get("api/getthumimages/" + this.id).then(result => {
         if (result.body.status === 0) {
           this.thumb = result.body.message;
@@ -136,14 +117,6 @@ export default {
       });
     },
 
-    goDesc(id) {
-      console.log("1");
-      this.$router.push({ name: "goodsdesc", params: { id } });
-    },
-
-    goComment(id) {
-      this.$router.push({ name: "goodscomment", params: { id } });
-    },
     getGoodsDesc() {
       this.$http
         .get("api/goods/getdesc/" + this.$route.params.id)
@@ -157,10 +130,10 @@ export default {
 };
 </script>
 <style lang="less">
-.content{
-    img{
+.content {
+  img {
     width: 100%;
-}
+  }
 }
 .OldPrice {
   color: #7d7e80;
