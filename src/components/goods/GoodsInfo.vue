@@ -26,7 +26,7 @@
       <van-goods-action-button type="danger" @click="sorry">立即购买</van-goods-action-button>
     </van-goods-action>
     <van-cell-group class="goods-cell-group">
-      <van-cell value="进入店铺" icon="shop-o" is-link @click="sorry">
+      <van-cell value="进入店铺" icon="shop-o" is-link to="/home/GoodsList">
         <template slot="title">
           <span class="van-cell-text">领军者旗舰店</span>
           <van-tag class="goods-tag" type="danger">旗舰店</van-tag>
@@ -38,6 +38,7 @@
       <van-cell title="查看商品详情" is-link @click="goDesc(id)" />
       <van-cell title="查看商品评价" is-link @click="goComment(id)" />
     </van-cell-group>-->
+
     <van-collapse v-model="activeNames">
       <van-collapse-item title="查看商品详情" name="1">
         <h4>{{ info.title }}</h4>
