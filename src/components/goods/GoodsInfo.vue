@@ -1,9 +1,5 @@
 <template>
   <div class="goods">
-    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
-      <div class="ball" v-show="ballFlag" ref="ball"></div>
-    </transition>
-
     <van-swipe class="goods-swipe" :autoplay="3000">
       <van-swipe-item v-for="thumb in thumb" :key="thumb.url">
         <img :src="thumb.src" />
@@ -22,12 +18,15 @@
         <van-col span="7">运费：免运费</van-col>
         <van-col span="7">剩余：{{ goods.stock_quantity }}件</van-col>
 
-        <van-col span="10">购买数量: <numbox></numbox></van-col>
-
-        
-
+        <van-col span="10">
+          购买数量:
+          <numbox></numbox>
+        </van-col>
         
       </van-cell>
+      <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+      <div class="ball" v-show="ballFlag" ref="ball"></div>
+    </transition>
     </van-cell-group>
     <van-goods-action>
       <van-goods-action-icon icon="chat-o" @click="sorry">客服</van-goods-action-icon>
@@ -128,7 +127,7 @@ export default {
       const yDist = badgePositon.top - ballPosition.top;
 
       el.style.transform = `translate(${xDist}px, ${yDist}px)`;
-      el.style.transition = "all 0.3s ease";
+      el.style.transition = "all 1s ease";
       done();
     },
     afterEnter(el) {
@@ -184,14 +183,14 @@ export default {
 </script>
 <style lang="less">
 //火狐下的移除
-input[type=number] {  
-    -moz-appearance:textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 //谷歌下的移除
-input[type=number]::-webkit-inner-spin-button,  
-input[type=number]::-webkit-outer-spin-button {  
-    -webkit-appearance: none;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 
 .ball {
@@ -200,7 +199,7 @@ input[type=number]::-webkit-outer-spin-button {
   border-radius: 50%;
   background: red;
   position: absolute;
-  z-index: 9999;
+  z-index: 99999;
 }
 .content {
   img {
