@@ -1,12 +1,8 @@
 <template>
   <div class="goods">
-      <transition
-      @before-enter="beforeEnter"
-      @enter="enter"
-      @after-enter="afterEnter">
-      <div class="ball" v-show="ballFlag"></div>
+    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+      <div class="ball" v-show="ballFlag" ref="ball"></div>
     </transition>
-
 
     <van-swipe class="goods-swipe" :autoplay="3000">
       <van-swipe-item v-for="thumb in thumb" :key="thumb.url">
@@ -42,13 +38,13 @@
       </van-cell>
     </van-cell-group>
 
-    <van-collapse v-model="activeNames">
-      <van-collapse-item title="查看商品详情" name="1">
+    <van-collapse v-model="activeNames" border accordion>
+      <van-collapse-item title="查看商品详情" icon="goods-collect-o" name="1">
         <h4>{{ info.title }}</h4>
         <br />
         <div v-html="info.content" class="content"></div>
       </van-collapse-item>
-      <van-collapse-item title="查看商品评价" name="2">
+      <van-collapse-item title="查看商品评价" icon="chat-o" name="2">
         <cmtbox :id="$route.params.id"></cmtbox>
       </van-collapse-item>
     </van-collapse>
@@ -103,28 +99,41 @@ export default {
     this.getGoodsDesc();
   },
   methods: {
-      beforeEnter(el){
-          el.style.transform = 'translate(0, 0)'
-        },
-        enter(el, done){
-          el.offsetWidth
-          el.style.transform = 'translate(53px, 480px)'
-          el.style.transition = 'all 1s ease'
-          done()
-        },
-        afterEnter(el){
+    beforeEnter(el) {
+      el.style.transform = "translate(0, 0)";
+    },
+    enter(el, done) {
+      el.offsetWidth;
+      // 小球的位置
+      const ballPosition = this.$refs.ball.getBoundingClientRect();
+      // 购物车位置
+      const badgePositon = document
+        .getElementById("badge")
+        .getBoundingClientRect();
 
-          // 这句话， 第一个功能，是控制小球的显示与隐藏
-          // 第二个功能： 直接跳过后半场动画，让 flag 标识符 直接变为 false
-          // 当第二次再点击 按钮的时候， flag  false  ->    true
-          el.style.opacity = 1
-          this.ballFlag = !this.ballFlag
+      const xDist = badgePositon.left - ballPosition.left;
+      const yDist = badgePositon.top - ballPosition.top;
 
 
-          // Vue 把一个完整的动画，使用钩子函数，拆分为了两部分：
-          // 我们使用 flag 标识符，来表示动画的切换；
-          // 刚以开始，flag = false  ->   true   ->   false
-        },
+
+
+
+
+      el.style.transform = `translate(${xDist}px, ${yDist}px)`;
+      el.style.transition = "all 0.3s ease";
+      done();
+    },
+    afterEnter(el) {
+      // 这句话， 第一个功能，是控制小球的显示与隐藏
+      // 第二个功能： 直接跳过后半场动画，让 flag 标识符 直接变为 false
+      // 当第二次再点击 按钮的时候， flag  false  ->    true
+      el.style.opacity = 1;
+      this.ballFlag = !this.ballFlag;
+
+      // Vue 把一个完整的动画，使用钩子函数，拆分为了两部分：
+      // 我们使用 flag 标识符，来表示动画的切换；
+      // 刚以开始，flag = false  ->   true   ->   false
+    },
     onClickCart() {
       this.$router.push("cart");
     },
@@ -161,15 +170,13 @@ export default {
 };
 </script>
 <style lang="less">
-.ball{
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: red;
-    position: absolute;
-    z-index: 9999;
-    position: absolute;
-    left: 20px;
+.ball {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: red;
+  position: absolute;
+  z-index: 9999;
 }
 .content {
   img {
