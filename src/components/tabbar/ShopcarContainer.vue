@@ -82,6 +82,9 @@ export default {
 </script>
 
 <style lang="less">
+.van-submit-bar{
+  bottom: 50px;
+}
 .card-goods {
   padding: 10px 0;
   background-color: #fff;
