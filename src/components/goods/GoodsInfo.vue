@@ -19,14 +19,24 @@
         </div>
       </van-cell>
       <van-cell class="goods-express">
-        <van-col span="10">运费：免运费</van-col>
-        <van-col span="14">剩余：{{ goods.stock_quantity }}件</van-col>
+        <van-col span="7">运费：免运费</van-col>
+        <van-col span="7">剩余：{{ goods.stock_quantity }}件</van-col>
+
+        <van-col span="10">购买数量: <numbox></numbox></van-col>
+
+        
+
+        
       </van-cell>
     </van-cell-group>
     <van-goods-action>
       <van-goods-action-icon icon="chat-o" @click="sorry">客服</van-goods-action-icon>
       <van-goods-action-icon icon="cart-o" @click="onClickCart">购物车</van-goods-action-icon>
-      <van-goods-action-button type="warning" @click="ballFlag=!ballFlag">加入购物车</van-goods-action-button>
+      <van-goods-action-button
+        type="warning"
+        @geicount="getSelectCount"
+        @click="ballFlag=!ballFlag"
+      >加入购物车</van-goods-action-button>
       <van-goods-action-button type="danger" @click="sorry">立即购买</van-goods-action-button>
     </van-goods-action>
     <van-cell-group class="goods-cell-group">
@@ -67,10 +77,12 @@ import {
 } from "vant";
 
 import cmtbox from "../subcomponents/comment.vue";
+import numbox from "../subcomponents/numbox.vue";
 
 export default {
   components: {
     cmtbox,
+    numbox,
     [Tag.name]: Tag,
     [Col.name]: Col,
     [Icon.name]: Icon,
@@ -90,7 +102,8 @@ export default {
       ballFlag: false,
       id: this.$route.params.id,
       thumb: [],
-      info: {}
+      info: {},
+      selectCount: 1 //添加购物车数量
     };
   },
   created() {
@@ -113,11 +126,6 @@ export default {
 
       const xDist = badgePositon.left - ballPosition.left;
       const yDist = badgePositon.top - ballPosition.top;
-
-
-
-
-
 
       el.style.transform = `translate(${xDist}px, ${yDist}px)`;
       el.style.transition = "all 0.3s ease";
@@ -165,11 +173,27 @@ export default {
             this.info = result.body.message[0];
           }
         });
+    },
+
+    getSelectCount(count) {
+      // 子组件数量传递给父组件 吧选中的值 保存到data上
+      this.selectCount = count;
     }
   }
 };
 </script>
 <style lang="less">
+//火狐下的移除
+input[type=number] {  
+    -moz-appearance:textfield;
+}
+
+//谷歌下的移除
+input[type=number]::-webkit-inner-spin-button,  
+input[type=number]::-webkit-outer-spin-button {  
+    -webkit-appearance: none;
+}
+
 .ball {
   width: 15px;
   height: 15px;
