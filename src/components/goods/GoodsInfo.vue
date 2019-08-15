@@ -22,20 +22,15 @@
           购买数量:
           <numbox @getcount="getSelectCount" :max="goods.stock_quantity"></numbox>
         </van-col>
-        
       </van-cell>
       <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
-      <div class="ball" v-show="ballFlag" ref="ball"></div>
-    </transition>
+        <div class="ball" v-show="ballFlag" ref="ball"></div>
+      </transition>
     </van-cell-group>
     <van-goods-action>
       <van-goods-action-icon icon="chat-o" @click="sorry">客服</van-goods-action-icon>
       <van-goods-action-icon icon="cart-o" @click="onClickCart">购物车</van-goods-action-icon>
-      <van-goods-action-button
-        type="warning"
-        @geicount="getSelectCount"
-        @click="ballFlag=!ballFlag"
-      >加入购物车</van-goods-action-button>
+      <van-goods-action-button type="warning" @geicount="getSelectCount" @click="addShop">加入购物车</van-goods-action-button>
       <van-goods-action-button type="danger" @click="sorry">立即购买</van-goods-action-button>
     </van-goods-action>
     <van-cell-group class="goods-cell-group">
@@ -111,6 +106,18 @@ export default {
     this.getGoodsDesc();
   },
   methods: {
+    addShop() {
+      this.ballFlag = !this.ballFlag;
+      // 拼接保存到car的数组
+      var goodsinfo = {
+        id: this.id,
+        count: this.selectCount,
+        price: this.goods.sell_price,
+        selected: false
+      };
+      this.$store.commit("addCar", goodsinfo)
+    },
+
     beforeEnter(el) {
       el.style.transform = "translate(0, 0)";
     },
