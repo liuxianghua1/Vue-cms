@@ -20,7 +20,7 @@
 
         <van-col span="10">
           购买数量:
-          <numbox></numbox>
+          <numbox @getcount="getSelectCount" :max="goods.stock_quantity"></numbox>
         </van-col>
         
       </van-cell>
@@ -127,7 +127,7 @@ export default {
       const yDist = badgePositon.top - ballPosition.top;
 
       el.style.transform = `translate(${xDist}px, ${yDist}px)`;
-      el.style.transition = "all 1s ease";
+      el.style.transition = "all 0.3 s ease";
       done();
     },
     afterEnter(el) {
