@@ -9,9 +9,12 @@ Vue.use(VueRouter)
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
+// 本地存储中吧购物车数据读出来
+var car = JSON.parse(localStorage.getItem('car') || '[]')
+
 var store = new Vuex.Store({
     state: {
-        car: [], //购物车商品数据
+        car: car, //购物车商品数据
 
     },
     mutations: {
@@ -30,17 +33,19 @@ var store = new Vuex.Store({
             if (!flag) {
                 state.car.push(goodsinfo);
             }
+            localStorage.setItem('car', JSON.stringify(state.car))
         },
 
     },
     getters: {
         getAllCount(state) {
-            var c = 0;
+            var quantity = 0;
             state.car.forEach( item => {
-                c += item.count;
+                quantity += item.count;
         })
-            return c;
-        }
+            return quantity;
+        },
+
     }
 })
 
