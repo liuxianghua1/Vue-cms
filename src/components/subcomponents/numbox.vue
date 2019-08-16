@@ -55,7 +55,8 @@ input[type="number"]::-webkit-outer-spin-button {
 .mui-numbox {
   border: 0px;
   width: 64px;
-  height: 25px;
+  height: 22px;
+  border: 1px solid #ebedf0;
   padding: 0 0px 0 0px !important;
 }
 .mui-numbox [class*="btn-numbox"] {

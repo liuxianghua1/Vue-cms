@@ -1,22 +1,25 @@
 <template>
   <div>
-    <van-checkbox-group class="card-goods" v-model="checkedGoods">
-      <van-checkbox class="card-goods__item" v-for="item in goods" :key="item.id" :name="item.id">
-        <van-card
-          :title="item.title"
-          :desc="item.desc"
-          :num="item.num"
-          :price="formatPrice(item.price)"
-          :thumb="item.thumb"
-        >
-          <div slot="footer">
-            <van-button size="mini">
-              <numbox></numbox>
-            </van-button>
-          </div>
-        </van-card>
-      </van-checkbox>
-    </van-checkbox-group>
+    <van-card
+      :title="item.title"
+      :desc="item.desc"
+      :num="item.num"
+      :price="formatPrice(item.price)"
+      :thumb="item.thumb"
+      v-for="item in goods"
+      :key="item.id"
+    >
+      <div slot="bottom">
+        <van-checkbox-group v-model="checkedGoods">
+          <van-checkbox :key="item.id" :name="item"></van-checkbox>
+        </van-checkbox-group>
+      </div>
+      <div slot="footer">
+        <numbox></numbox>
+        <van-button size="mini" >删除</van-button>
+      </div>
+    </van-card>
+
     <van-submit-bar
       :price="totalPrice"
       :disabled="!checkedGoods.length"
