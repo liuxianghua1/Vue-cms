@@ -9,6 +9,10 @@ Vue.use(VueRouter)
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
+
 // 本地存储中吧购物车数据读出来
 var car = JSON.parse(localStorage.getItem('car') || '[]')
 
@@ -37,7 +41,7 @@ var store = new Vuex.Store({
         },
         // 修改购物车数量
         updateGoodsInfo(state, goodsinfo) {
-            state.car.some( item => {
+            state.car.some(item => {
                 if (item.id == goodsinfo.id) {
                     item.count = parseInt(goodsinfo.count)
                     return true
@@ -57,7 +61,18 @@ var store = new Vuex.Store({
                 }
             })
             // 删除后更新数据
-            localStorage.setItem('car', JSON.stringify(state.car))            
+            localStorage.setItem('car', JSON.stringify(state.car))
+        },
+
+        updateGoodsSelected(state, info) {
+            state.car.some(item => {
+                if (item.id == info.id) {
+                    item.selected = info.selected
+                }
+            })
+            // 开关的最新数据 同步到localStorage
+            localStorage.setItem('car', JSON.stringify(state.car))
+
         }
 
     },
@@ -65,9 +80,9 @@ var store = new Vuex.Store({
         // 所有数量
         getAllCount(state) {
             var quantity = 0;
-            state.car.forEach( item => {
+            state.car.forEach(item => {
                 quantity += item.count;
-        })
+            })
             return quantity;
         },
 
@@ -79,8 +94,28 @@ var store = new Vuex.Store({
             return o
         },
 
+        getCountSelected(state) {
+            var o = {}
+            state.car.forEach(item => {
+                o[item.id] = item.selected
+            })
+            return o;
+        },
 
-        
+        getGoodsCountAndAmount(state) {
+            var o = {
+                count: 0, //数量
+                amount:0//总件
+            }
+            state.car.forEach(item => {
+                if (item.selected) {
+                    o.count += item.count
+                    o.amount += item.price * item.count
+                }
+            })
+            return o
+        }
+
 
     }
 })
@@ -108,7 +143,7 @@ import 'muse-ui/dist/muse-ui.css';
 
 
 
-import { Button, NavBar, Tabbar, TabbarItem, Row, Col, Swipe, SwipeItem, Lazyload, Grid, GridItem, Card, Notify, Panel, List, Tab, Tabs, Collapse, CollapseItem, Divider  } from 'vant';
+import { Button, NavBar, Tabbar, TabbarItem, Row, Col, Swipe, SwipeItem, Lazyload, Grid, GridItem, Card, Notify, Panel, List, Tab, Tabs, Collapse, CollapseItem, Divider } from 'vant';
 
 Vue.use(Button).use(NavBar).use(Tabbar).use(TabbarItem).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(Grid).use(GridItem).use(Card).use(Notify).use(Panel).use(List).use(MuseUI).use(Tab).use(Tabs).use(Collapse).use(CollapseItem).use(Divider);
 

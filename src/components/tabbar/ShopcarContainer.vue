@@ -1,6 +1,8 @@
 <template>
   <div>
-    <van-divider :style="{ color: '#8f8f94', borderColor: '#84c225', padding: '0 16px' }">共有1件商品</van-divider>
+    <van-divider
+      :style="{ color: '#8f8f94', borderColor: '#84c225', padding: '0 16px' }"
+    >共有{{ $store.getters.getAllCount }}件商品</van-divider>
     <van-card
       v-for="(item, i) in goodslist"
       :key="item.id"
@@ -9,9 +11,20 @@
       :thumb="item.thumb_path"
     >
       <div slot="bottom">
-        <van-checkbox-group v-model="checkedGoods">
-          <van-checkbox :name="item" v-model="checked"></van-checkbox>
-        </van-checkbox-group>
+        <mu-container>
+          <mu-flex class="select-control-row">
+            <mu-switch
+              v-model="$store.getters.getCountSelected[item.id]"
+              @change="selectedChanged(item.id,$store.getters.getCountSelected[item.id])"
+              :name="item"
+            ></mu-switch>
+          </mu-flex>
+        </mu-container>
+        <!-- 
+        <mt-switch
+          v-model="$store.getters.getCountSelected[item.id]"
+          @change="selectedChanged(item.id,$store.getters.getCountSelected[item.id])"
+        ></mt-switch>-->
       </div>
 
       <div slot="footer">
@@ -20,47 +33,29 @@
       </div>
     </van-card>
 
-    <!-- <van-checkbox-group class="card-goods" v-model="checkedGoods">
-      <van-checkbox
-        class="card-goods__item"
-        v-for="item in goods"
-        :key="item.id"
-        :name="item.id"
-      >
-        <van-card
-          :title="item.title"
-          :desc="item.desc"
-          :num="item.num"
-          :price="formatPrice(item.price)"
-          :thumb="item.thumb"
-        />
-      </van-checkbox>
-    </van-checkbox-group>-->
-
-    <van-submit-bar
-      :price="totalPrice"
-      :disabled="!checkedGoods.length"
-      :button-text="submitBarText"
-      @submit="onSubmit"
-    />
+    <div id="fixed_wrap">
+      <van-submit-bar
+        :price="this.$store.getters.getGoodsCountAndAmount.amount*100"
+        :button-text="submitBarText"
+        @submit="onSubmit"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import numbox from "../subcomponents/numbox.vue";
-import { Checkbox, CheckboxGroup, Card, SubmitBar, Toast } from "vant";
+import { Card, SubmitBar, Toast } from "vant";
 export default {
   components: {
     numbox,
     [Card.name]: Card,
-    [Checkbox.name]: Checkbox,
+    // [Checkbox.name]: Checkbox,
     [SubmitBar.name]: SubmitBar,
-    [CheckboxGroup.name]: CheckboxGroup
+    // [CheckboxGroup.name]: CheckboxGroup
   },
   data() {
     return {
-      checkedGoods: [],
-      checked: true,
       goodslist: []
     };
   },
@@ -68,21 +63,30 @@ export default {
     this.getGoodsList();
   },
   computed: {
-    // 计算数量
     submitBarText() {
-      const count = this.checkedGoods.length;
+      const count = this.$store.getters.getGoodsCountAndAmount.count;
       return "结算" + (count ? `(${count})` : "");
     },
-    //计算价格
-    totalPrice() {
-      return this.goodslist.reduce(
-        (total, item) =>
-          total + (this.checkedGoods.indexOf(item.id) !== -1 ? item.price : 0),
-        0
-      );
-    }
+    // 计算价格
+    // totalPrice() {
+    //   return this.goodslist.reduce(
+    //     (total, item) =>
+    //       total +
+    //       (this.$store.getters.getGoodsCountAndAmount.amount.indexOf(
+    //         item.id
+    //       ) !== -1
+    //         ? item.price
+    //         : 0),
+    //     0
+    //   );
+    // }
   },
   methods: {
+    selectedChanged(id, val) {
+      // 选中状态更新
+      console.log(id + "-----" + val);
+      this.$store.commit("updateGoodsSelected", { id, selected: val });
+    },
     // 本地存储删除
     remoev(id, index) {
       this.goodslist.splice(index, 1);
@@ -117,6 +121,15 @@ export default {
 </script>
 
 <style lang="less">
+#fixed_wrap {
+  height: 50px;
+}
+.mu-switch-checked {
+  color: #84c225;
+}
+.container {
+  padding-left: 09px;
+}
 .van-checkbox__icon--checked .van-icon {
   color: #fff;
   background-color: #84c225;
