@@ -20,7 +20,8 @@ module.exports = {
         open: true,//自动打开浏览器
         hot: true,//启动热更新第一步
         port: 8000,//端口
-        contentBase: 'src'//默认显示页面
+        contentBase: 'src',//默认显示页面
+        disableHostCheck: true
     },
     plugins: [
         //配置插件的节点

@@ -9,7 +9,7 @@
       :immediate-check="false"
       check
     >
-      <router-link :to="'/home/GoodsInfo/' + item.id" v-for="item in goodslist" :key="item">
+      <router-link :to="'/home/GoodsInfo/' + item.id" v-for="item in goodslist" :key="item.id">
         <van-card
           :price="item.sell_price"
           :origin-price="item.market_price"

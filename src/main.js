@@ -108,9 +108,9 @@ import 'muse-ui/dist/muse-ui.css';
 
 
 
-import { Button, NavBar, Tabbar, TabbarItem, Row, Col, Swipe, SwipeItem, Lazyload, Grid, GridItem, Card, Notify, Panel, List, Tab, Tabs, Collapse, CollapseItem } from 'vant';
+import { Button, NavBar, Tabbar, TabbarItem, Row, Col, Swipe, SwipeItem, Lazyload, Grid, GridItem, Card, Notify, Panel, List, Tab, Tabs, Collapse, CollapseItem, Divider  } from 'vant';
 
-Vue.use(Button).use(NavBar).use(Tabbar).use(TabbarItem).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(Grid).use(GridItem).use(Card).use(Notify).use(Panel).use(List).use(MuseUI).use(Tab).use(Tabs).use(Collapse).use(CollapseItem);
+Vue.use(Button).use(NavBar).use(Tabbar).use(TabbarItem).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(Grid).use(GridItem).use(Card).use(Notify).use(Panel).use(List).use(MuseUI).use(Tab).use(Tabs).use(Collapse).use(CollapseItem).use(Divider);
 
 // 图片预览插件
 import VuePreview from 'vue-preview'

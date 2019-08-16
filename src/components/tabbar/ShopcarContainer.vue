@@ -1,5 +1,6 @@
 <template>
   <div>
+    <van-divider :style="{ color: '#8f8f94', borderColor: '#84c225', padding: '0 16px' }">共有1件商品</van-divider>
     <van-card
       v-for="(item, i) in goodslist"
       :key="item.id"
@@ -9,7 +10,7 @@
     >
       <div slot="bottom">
         <van-checkbox-group v-model="checkedGoods">
-          <van-checkbox :name="item"></van-checkbox>
+          <van-checkbox :name="item" v-model="checked"></van-checkbox>
         </van-checkbox-group>
       </div>
 
@@ -59,7 +60,7 @@ export default {
   data() {
     return {
       checkedGoods: [],
-
+      checked: true,
       goodslist: []
     };
   },
@@ -84,9 +85,8 @@ export default {
   methods: {
     // 本地存储删除
     remoev(id, index) {
-      this.goodslist.splice(index, 1)
-      this.$store.commit('removeFormCar', id)
-
+      this.goodslist.splice(index, 1);
+      this.$store.commit("removeFormCar", id);
     },
     formatPrice(price) {
       return (price / 100).toFixed(2);
@@ -117,6 +117,11 @@ export default {
 </script>
 
 <style lang="less">
+.van-checkbox__icon--checked .van-icon {
+  color: #fff;
+  background-color: #84c225;
+  border-color: #84c225;
+}
 .van-submit-bar {
   bottom: 50px;
 }
