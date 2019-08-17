@@ -28,7 +28,7 @@
       </div>
 
       <div slot="footer">
-        <numbox :initcount="$store.getters.getGoodsCount[item.id]" :goodsid="item.id"></numbox>
+        <carnumbox :initcount="$store.getters.getGoodsCount[item.id]" :goodsid="item.id"></carnumbox>
         <van-button size="mini" @click.prevent="remoev(item.id, i)">删除</van-button>
       </div>
     </van-card>
@@ -44,11 +44,11 @@
 </template>
 
 <script>
-import numbox from "../subcomponents/numbox.vue";
+import carnumbox from "../subcomponents/carnumbox.vue";
 import { Card, SubmitBar, Toast } from "vant";
 export default {
   components: {
-    numbox,
+    carnumbox,
     [Card.name]: Card,
     // [Checkbox.name]: Checkbox,
     [SubmitBar.name]: SubmitBar,
@@ -84,7 +84,6 @@ export default {
   methods: {
     selectedChanged(id, val) {
       // 选中状态更新
-      console.log(id + "-----" + val);
       this.$store.commit("updateGoodsSelected", { id, selected: val });
     },
     // 本地存储删除
@@ -121,6 +120,9 @@ export default {
 </script>
 
 <style lang="less">
+.container{
+  margin-left: 0px;
+}
 #fixed_wrap {
   height: 50px;
 }

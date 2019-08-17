@@ -79,11 +79,11 @@ var store = new Vuex.Store({
     getters: {
         // 所有数量
         getAllCount(state) {
-            var quantity = 0;
+            var c = 0;
             state.car.forEach(item => {
-                quantity += item.count;
+                c += item.count;
             })
-            return quantity;
+            return c;
         },
 
         getGoodsCount(state) {
@@ -105,7 +105,7 @@ var store = new Vuex.Store({
         getGoodsCountAndAmount(state) {
             var o = {
                 count: 0, //数量
-                amount:0//总件
+                amount: 0//总件
             }
             state.car.forEach(item => {
                 if (item.selected) {

@@ -1,4 +1,4 @@
-// 商品页面使用
+// 购物车页面使用
 <template>
   <div class="mui-numbox" data-numbox-min="1">
     <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
@@ -6,7 +6,7 @@
       id="test"
       class="mui-input-numbox"
       type="number"
-      :value="1"
+      :value="initcount"
       @change="countChange"
       ref="numbox"
     />
@@ -24,15 +24,15 @@ export default {
 
   methods: {
     countChange() {
-        this.$emit("getcount", parseInt(this.$refs.numbox.value));
+        // this.$emit("getcount", parseInt(this.$refs.numbox.value));
     //   数量改变 同步覆盖之前的数量
-      // this.$store.commit("updateGoodsInfo", {
-      //   id: this.goodsid,
-      //   count: this.$refs.numbox.value
-      // });
+      this.$store.commit("updateGoodsInfo", {
+        id: this.goodsid,
+        count: this.$refs.numbox.value
+      });
     }
   },
-  props: ["max"],
+  props: ["initcount", "max", "goodsid"],
 
   watch: {
     max: function(newVal, oldVal) {
